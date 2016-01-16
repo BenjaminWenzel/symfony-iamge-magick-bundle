@@ -41,7 +41,7 @@ class ImageExtension extends \Twig_Extension
     public function __construct( ContainerInterface $container = NULL )
     {
         $this->container = $container;
-        //$this->imageService = $container->get( "hartwig_image_magick.service.image_service" );
+        $this->imageService = $container->get( "hartwig_image_magick.service.image_service" );
     }
 
     /**
