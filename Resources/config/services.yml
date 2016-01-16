@@ -1,0 +1,6 @@
+services:
+    hartwig_image_magick.twig.image_extension:
+    class: Hartwig\ImageMagickBundle\Twig\ImageExtension
+    arguments: [ "@service_container" ]
+    tags:
+        - { name: twig.extension }
