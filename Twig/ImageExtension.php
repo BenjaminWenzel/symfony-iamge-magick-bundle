@@ -109,53 +109,52 @@ class ImageExtension extends \Twig_Extension
      */
     public function renderImage( $imageSource, $format = NULL, $class = NULL, $title = NULL, $alt = NULL, array $arguments = array() )
     {
-//		if( !empty( $imageSource ) ) {
-//			/** @var string $processedImage */
-//			$processedImage = $this->imageService->processImage( $imageSource, $format );
-//		}
-//
-//		if( !empty( $processedImage ) ) {
-//			$imageSource = $processedImage;
-//		}
-//
-//		/** @var \Symfony\Component\Routing\RequestContext $request */
-//		$request = $this->container->get( "router.request_context" );
-//		/** @var string $url */
-//		$url = $request->getScheme() . "://" . $request->getHost() . "/" . $imageSource;
-//
-//		/** @var array $tag */
-//		$tag = array();
-//		$tag[] = "<img";
-//		$tag[] = "src='" . $url . "'";
-//		if( !empty( $class ) ) {
-//			$tag[] = "class='" . $class . "'";
-//		}
-//		if( !empty( $title ) ) {
-//			$tag[] = "title='" . $title . "'";
-//		}
-//		if( !empty( $alt ) ) {
-//			$tag[] = "alt='" . $alt . "'";
-//		}
-//		/** @var array $imageSize */
-//		$imageSize = getimagesize( $imageSource );
-//		$tag[] = "width='" . $imageSize[ 0 ] . "' height='" . $imageSize[ 1 ] . "'";
-//
-//		if( !empty( $arguments ) ) {
-//			/**
-//			 * @var string $key
-//			 * @var string $value
-//			 */
-//			foreach( $arguments as $key => $value ) {
-//				if( is_string( $key ) && is_string( $value ) ) {
-//					$tag[] = $key . "='" . $value . "'";
-//				}
-//			}
-//		}
-//
-//		$tag[] = "/>";
-//
-//		return implode( " ", $tag );
-        return "commented";
+		if( !empty( $imageSource ) ) {
+			/** @var string $processedImage */
+			$processedImage = $this->imageService->processImage( $imageSource, $format );
+		}
+
+		if( !empty( $processedImage ) ) {
+			$imageSource = $processedImage;
+		}
+
+		/** @var \Symfony\Component\Routing\RequestContext $request */
+		$request = $this->container->get( "router.request_context" );
+		/** @var string $url */
+		$url = $request->getScheme() . "://" . $request->getHost() . "/" . $imageSource;
+
+		/** @var array $tag */
+		$tag = array();
+		$tag[] = "<img";
+		$tag[] = "src='" . $url . "'";
+		if( !empty( $class ) ) {
+			$tag[] = "class='" . $class . "'";
+		}
+		if( !empty( $title ) ) {
+			$tag[] = "title='" . $title . "'";
+		}
+		if( !empty( $alt ) ) {
+			$tag[] = "alt='" . $alt . "'";
+		}
+		/** @var array $imageSize */
+		$imageSize = getimagesize( $imageSource );
+		$tag[] = "width='" . $imageSize[ 0 ] . "' height='" . $imageSize[ 1 ] . "'";
+
+		if( !empty( $arguments ) ) {
+			/**
+			 * @var string $key
+			 * @var string $value
+			 */
+			foreach( $arguments as $key => $value ) {
+				if( is_string( $key ) && is_string( $value ) ) {
+					$tag[] = $key . "='" . $value . "'";
+				}
+			}
+		}
+
+		$tag[] = "/>";
+
+		return implode( " ", $tag );
     }
 
     /**
