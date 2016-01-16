@@ -13,10 +13,9 @@
  ***************************************************************/
 
 namespace Hartwig\Bundle\ImageMagickBundle\Service;
-
-use Hartwig\ImageMagickBundle\Bundle\Exception\InvalidArgumentException;
-use Hartwig\ImageMagickBundle\Bundle\Exception\RuntimeException;
-use Hartwig\ImageMagickBundle\Bundle\Exception\FileNotFoundException;
+use Hartwig\Bundle\ImageMagickBundle\Exception\InvalidArgumentException;
+use Hartwig\Bundle\ImageMagickBundle\Exception\RuntimeException;
+use Hartwig\Bundle\ImageMagickBundle\Exception\FileNotFoundException;
 use Symfony\Component\Process\Process;
 
 /**
