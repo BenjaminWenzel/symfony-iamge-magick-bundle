@@ -1,4 +1,8 @@
 services:
+    hartwig_image_magick.service.image_service:
+        class: Hartwig\Bundle\ImageMagickBundle\Service\ImageService
+        arguments: ["%kernel.root_dir%", "%hartwig_image_magick.web_path%", "%hartwig_image_magick.cache_path%"]
+
     hartwig_image_magick.twig.image_extension:
         class: Hartwig\Bundle\ImageMagickBundle\Twig\ImageExtension
         arguments: [ "@service_container" ]
