@@ -1,0 +1,21 @@
+{
+    "name": "hartwig/image-magick-bundle",
+    "description": "Symfony bundle with useful twig extensions",
+    "keywords": ["hartwig", "symfony", "bundle", "twig", "twig extension", "image magick"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjamin Wenzel",
+            "email": "benjamin.wenzel@mail.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.3|~3.0",
+        "twig/twig": "~1.20|~2.0"
+    },
+    "autoload": {
+        "psr-4": { "Hartwig\\Bundle\\ImageMagickBundle\\": "" }
+    }
+}
