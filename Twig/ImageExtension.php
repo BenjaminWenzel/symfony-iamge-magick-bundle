@@ -100,61 +100,64 @@ class ImageExtension extends \Twig_Extension
     /**
      * @param string $imageSource
      * @param string $format
+     * @param null $id
      * @param string $class
      * @param string $title
      * @param string $alt
      * @param array $arguments
-     *
      * @return string
      */
-    public function renderImage( $imageSource, $format = NULL, $class = NULL, $title = NULL, $alt = NULL, array $arguments = array() )
+    public function renderImage( $imageSource, $format = NULL, $id = NULL, $class = NULL, $title = NULL, $alt = NULL, array $arguments = array() )
     {
-		if( !empty( $imageSource ) ) {
-			/** @var string $processedImage */
-			$processedImage = $this->imageService->processImage( $imageSource, $format );
-		}
+        if ( !empty($imageSource) ) {
+            /** @var string $processedImage */
+            $processedImage = $this->imageService->processImage( $imageSource, $format );
+        }
 
-		if( !empty( $processedImage ) ) {
-			$imageSource = $processedImage;
-		}
+        if ( !empty($processedImage) ) {
+            $imageSource = $processedImage;
+        }
 
-		/** @var \Symfony\Component\Routing\RequestContext $request */
-		$request = $this->container->get( "router.request_context" );
-		/** @var string $url */
-		$url = $request->getScheme() . "://" . $request->getHost() . "/" . $imageSource;
+        /** @var \Symfony\Component\Routing\RequestContext $request */
+        $request = $this->container->get( "router.request_context" );
+        /** @var string $url */
+        $url = $request->getScheme() . "://" . $request->getHost() . "/" . $imageSource;
 
-		/** @var array $tag */
-		$tag = array();
-		$tag[] = "<img";
-		$tag[] = "src='" . $url . "'";
-		if( !empty( $class ) ) {
-			$tag[] = "class='" . $class . "'";
-		}
-		if( !empty( $title ) ) {
-			$tag[] = "title='" . $title . "'";
-		}
-		if( !empty( $alt ) ) {
-			$tag[] = "alt='" . $alt . "'";
-		}
-		/** @var array $imageSize */
-		$imageSize = getimagesize( $imageSource );
-		$tag[] = "width='" . $imageSize[ 0 ] . "' height='" . $imageSize[ 1 ] . "'";
+        /** @var array $tag */
+        $tag = array();
+        $tag[] = "<img";
+        $tag[] = "src='" . $url . "'";
+        if ( !empty($id) ) {
+            $tag[] = "id='" . $id . "'";
+        }
+        if ( !empty($class) ) {
+            $tag[] = "class='" . $class . "'";
+        }
+        if ( !empty($title) ) {
+            $tag[] = "title='" . $title . "'";
+        }
+        if ( !empty($alt) ) {
+            $tag[] = "alt='" . $alt . "'";
+        }
+        /** @var array $imageSize */
+        $imageSize = getimagesize( $imageSource );
+        $tag[] = "width='" . $imageSize[0] . "' height='" . $imageSize[1] . "'";
 
-		if( !empty( $arguments ) ) {
-			/**
-			 * @var string $key
-			 * @var string $value
-			 */
-			foreach( $arguments as $key => $value ) {
-				if( is_string( $key ) && is_string( $value ) ) {
-					$tag[] = $key . "='" . $value . "'";
-				}
-			}
-		}
+        if ( !empty($arguments) ) {
+            /**
+             * @var string $key
+             * @var string $value
+             */
+            foreach ($arguments as $key => $value) {
+                if ( is_string( $key ) && is_string( $value ) ) {
+                    $tag[] = $key . "='" . $value . "'";
+                }
+            }
+        }
 
-		$tag[] = "/>";
+        $tag[] = "/>";
 
-		return implode( " ", $tag );
+        return implode( " ", $tag );
     }
 
     /**
