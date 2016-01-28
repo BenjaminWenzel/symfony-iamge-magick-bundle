@@ -92,9 +92,21 @@ class ImageExtension extends \Twig_Extension
      */
     public function imageResize( $imageSource, $format )
     {
-        $temp = 1;
+        if( !empty( $imageSource ) ) {
+            /** @var string $processedImage */
+            $processedImage = $this->imageService->processImage( $imageSource, $format );
+        }
 
-        return "";
+        if( !empty( $processedImage ) ) {
+            $imageSource = $processedImage;
+        }
+
+        /** @var \Symfony\Component\Routing\RequestContext $request */
+        $request = $this->container->get( "router.request_context" );
+        /** @var string $url */
+        $url = $request->getScheme() . "://" . $request->getHost() . "/" . $imageSource;
+
+        return $url;
     }
 
     /**
