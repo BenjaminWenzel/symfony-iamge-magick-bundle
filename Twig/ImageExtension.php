@@ -50,7 +50,7 @@ class ImageExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFunction(
+            new \Twig_SimpleFilter(
                 "imageResize",
                 array(
                     $this,
